@@ -30,17 +30,17 @@ dojo.declare('HangoutInjection', null,{
 		this.uniqueKey = parsePassTwo[0];
 	},
 	domInject: function() {
-		var youtubeNode = dojo.query(this.youtubeClassSelector)[0];
-		this.youtubeNode = youtubeNode;
-		if (youtubeNode) {
-			var gameNode = dojo.clone(youtubeNode);
-			this.gameNode = gameNode;
-			dojo.removeClass(gameNode, this.youtubeClass);
-			dojo.addClass(gameNode, this.gameClass);
-			dojo.attr(gameNode, {id: ':rg'});
-			dojo.query('.hangout-toolbar-text', gameNode)[0].innerHTML = this.gameNodeText;
-			dojo.query('.hangout-toolbar-icon', gameNode).style('backgroundImage', 'url(chrome-extension://' + chrome.i18n.getMessage('@@extension_id') + this.gameNodeImage + ')');
-			dojo.place(gameNode, youtubeNode, 'after');
+		//var youtubeNode = dojo.query(this.youtubeClassSelector)[0];
+		this.youtubeNode = dojo.query(this.youtubeClassSelector)[0];//youtubeNode;
+		if (this.youtubeNode) {
+			//var gameNode = dojo.clone(youtubeNode);
+			this.gameNode = dojo.clone(this.youtubeNode);//gameNode;
+			dojo.removeClass(this.gameNode, this.youtubeClass);
+			dojo.addClass(this.gameNode, this.gameClass);
+			//dojo.attr(gameNode, {id: ':rg'});
+			dojo.query('.hangout-toolbar-text', this.gameNode)[0].innerHTML = this.gameNodeText;
+			dojo.query('.hangout-toolbar-icon', this.gameNode).style('backgroundImage', 'url(chrome-extension://' + chrome.i18n.getMessage('@@extension_id') + this.gameNodeImage + ')');
+			dojo.place(this.gameNode, this.youtubeNode, 'after');
 			
 			this.videoDisplay = dojo.byId(this.videoId);
 			this.videoChild = dojo.query(this.videoDisplay).children('div:first-child')[0];
@@ -48,8 +48,8 @@ dojo.declare('HangoutInjection', null,{
 			this.gameDisplay = dojo.create('div', {class: 'CSS_LAYOUT_COMPONENT', style: {display: 'none'}}, this.videoDisplay, 'before');
 			var iframe = dojo.create('iframe', {src: this.iframeUrl + '?hangoutUrl=' + this.uniqueKey, frameBorder: '0', style: {width: '100%', height: '100%'}}, this.gameDisplay, 'first');
 			
-			dojo.connect(gameNode, "onclick", this, this.onGameButtonClick);
-			dojo.connect(youtubeNode, "onclick", this, this.onYoutubeButtonClick);
+			dojo.connect(this.gameNode, "onclick", this, this.onGameButtonClick);
+			dojo.connect(this.youtubeNode, "onclick", this, this.onYoutubeButtonClick);
 		}
 	},
 	onGameButtonClick: function() {
@@ -59,14 +59,15 @@ dojo.declare('HangoutInjection', null,{
 		}
 		
 		dojo.toggleClass(this.gameNode, this.toolbarCheckedClass);
-		if (dojo.hasClass(this.gameNode, this.toolbarCheckedClass)) { // VISIBLE
-			dojo.query(this.gameDisplay).siblings().forEach(function(sibling){
+		dojo.query(this.gameDisplay).siblings().forEach(function(sibling){
 				if (dojo.attr(sibling, 'id') != this.videoId) {
 					dojo.style(sibling, {display: 'none'});
 				} else {
 					dojo.style(sibling, {position: 'absolute', top: '5000px'});
 				}
 			}, this);
+		if (dojo.hasClass(this.gameNode, this.toolbarCheckedClass)) { // VISIBLE
+			
 			dojo.style(this.gameDisplay, {display: 'block'});
 			dojo.style(this.videoChild, {height: '1px', width: '1px'});
 			

@@ -33,7 +33,6 @@ dojo.declare('HangoutInjection', null,{
 		var youtubeNode = dojo.query(this.youtubeClassSelector)[0];
 		this.youtubeNode = youtubeNode;
 		if (youtubeNode) {
-			//var copyNode = dojo.query(this.youtubeClassSelector)[0];
 			var gameNode = dojo.clone(youtubeNode);
 			this.gameNode = gameNode;
 			dojo.removeClass(gameNode, this.youtubeClass);
@@ -65,7 +64,7 @@ dojo.declare('HangoutInjection', null,{
 				if (dojo.attr(sibling, 'id') != this.videoId) {
 					dojo.style(sibling, {display: 'none'});
 				} else {
-					dojo.style(sibling, {visibility: 'hidden'});
+					dojo.style(sibling, {position: 'absolute', top: '5000px'});
 				}
 			}, this);
 			dojo.style(this.gameDisplay, {display: 'block'});
@@ -73,34 +72,24 @@ dojo.declare('HangoutInjection', null,{
 			
 		} else { // NOT VISIBLE
 			dojo.style(this.gameDisplay, {display: 'none'});
-			dojo.style(this.videoDisplay, {visibility: 'visible'});
+			dojo.style(this.videoDisplay, {top: '0'});
+			dojo.style(this.videoDisplay, {position: 'relative'});
 			dojo.style(this.videoChild, {height: '100%', width: '100%'});
 		}
 	},
 	onYoutubeButtonClick: function() {
-		//var videoChild = dojo.query(this.videoDisplay).children('div:first-child')[0];
 		dojo.removeClass(this.gameNode, this.toolbarCheckedClass);
 		dojo.style(this.gameDisplay, {display: 'none'});
-		//dojo.style(dojo.byId(':mt'), {display: ''});
-		/*dojo.query(this.gameDisplay).siblings().forEach(function(sibling){
-				dojo.style(sibling, {display: 'none'});
-		}, this);*/
-		//dojo.style(videoChild, {height: '1px', width: '1px'});
 		if (dojo.hasClass(this.youtubeNode, this.toolbarCheckedClass)) { // VISIBLE
-			/*dojo.query(this.gameDisplay).siblings().forEach(function(sibling){
-				if (dojo.attr(sibling, 'id') != ':ms') {
-					dojo.style(sibling, {display: 'none'});
-				}
-			}, this);*/
 			dojo.style(this.videoChild, {height: '1px', width: '1px'});
-			
 		} else { // NOT VISIBLE
-			//dojo.style(this.gameDisplay, {display: 'none'});
 			dojo.query(this.gameDisplay).siblings().forEach(function(sibling){
 				if (dojo.attr(sibling, 'id') != this.videoId) {
 					dojo.style(sibling, {display: 'none'});
 				}
 			}, this);
+			dojo.style(this.videoDisplay, {top: '0'});
+			dojo.style(this.videoDisplay, {position: 'relative'});
 			dojo.style(this.videoChild, {height: '100%', width: '100%'});
 		}
 	}

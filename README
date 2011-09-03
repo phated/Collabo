@@ -1,0 +1,12 @@
+The original Collabo project was conceived at an HTML5 hackathon at Google Headquarters.  The concept was to inject a project called Draw It Live by Luis Montes into a Google+ Hangout to allow for collaborative drawing within the Hangout.
+
+The idea has been evolving and Collabo is going to become a framework to allow for any type of content to be injected into a Google+ Hangout.
+
+This framework is designed to work as a packaged Chrome Web Store App where the javascript interacts with the DOM whenever a Google+ Hangout is loaded.
+
+The original code this framework is based on was created by Mohamed Mansour (https://github.com/mohamedmansour), but it is almost completely rewritten with the Dojo framework in order to get around some buggy things.
+
+There are many improvements that need to be made, but I figured this needed to be hosted on github.
+
+Hope you can do something with this,
+Phated

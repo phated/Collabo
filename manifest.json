@@ -1,0 +1,35 @@
+{
+  "name": "Collabo",
+  "version": "0.0.3",
+  "description": "Collaborate with your friends in a Google+ Hangout",
+  "icons": {
+    "16": "img/icon16.png",
+    "32": "img/icon32.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
+  },
+  "permissions": [
+    "tabs",
+    "http://talkgadget.google.com/*",
+    "https://talkgadget.google.com/*"
+   ],
+  "browser_action": {
+    "default_icon": "img/icon32.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://talkgadget.google.com/hangouts/*"
+       ],
+      "css": [
+        "css/hangout.css"
+      ],
+      "js": [
+        "js/dojo.js",
+        "js/hangout_injection.js"
+      ],
+      "run_at": "document_end",
+      "all_frames": true
+    }
+  ]
+}

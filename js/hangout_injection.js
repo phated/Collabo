@@ -8,7 +8,7 @@ var LAZY_LOAD_MS = 10000;
 
 dojo.declare('HangoutInjection', null,{
 	/* Youtube Selectors and Nodes */
-	youtubeIframeId: ':ky',
+	youtubeIframeId: ':kh',
 	youtubeClassSelector: '.hangout-youtube',
 	youtubeClass: 'hangout-youtube',
 	youtubeNode: null,
